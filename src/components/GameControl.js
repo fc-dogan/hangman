@@ -4,12 +4,13 @@ import Word from './Word';
 import LetterList from './LetterList';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
+import {randomWord} from './WordList';
 
 class GameControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      // gameWord: "",
+      gameWord: randomWord(),
       wrongLetters: 0,
       guessedLetters: [],
       image: 0,
@@ -23,6 +24,10 @@ class GameControl extends React.Component {
 //   }
 //   dispatch(action);
 //  }
+
+handleGuessedWord(){
+  return this.state.gameWord.split("").map(letter => (this.state.guessedLetters.has(letter) ? letter : " _ "))
+}
 
   render() { 
     return (
