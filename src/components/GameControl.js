@@ -6,15 +6,21 @@ import LetterList from './LetterList';
 class GameControl extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {  }
+    this.state = { 
+      gameWord: "",
+      wrongLetters: 0,
+      guessedLetters: [],
+      image: 0,
+     }
   }
+
   render() { 
     return (
       <React.Fragment>
         <h1>Game control</h1>
         <HangmanImage />
         <Word />
-        <LetterList />
+        <LetterList  />
       </React.Fragment>
      );
   }
