@@ -2,24 +2,19 @@ import React from 'react';
 import PropTypes from "prop-types";
 
 function Word(props){
-  const { word } = props;
-
-  function handleSplitGameWord(props){
-    props.gameWord.split("").map(letter => {
-      return letter;
-    })
-  }
-
+ 
   return (
     <React.Fragment>
-      {handleSplitGameWord}
+      <p>Game word</p>
+    
+      {/* <p>{props.handleRandomWord}</p> */}
     </React.Fragment>
     
   )
 }
 
-Word.propTypes ={
-  gameWord: PropTypes.string
-}
+// Word.propTypes ={
+//   handleRandomWord: PropTypes.func
+// }
 
 export default Word;

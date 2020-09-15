@@ -6,6 +6,6 @@ describe('gameWordReducer', () => {
   });
   
     test('Should successfully add a new word to state', () => {
-      expect(gameWordReducer(undefined, { type: "SET_WORD" }).length).toBeGreaterThan(0);
+      expect(gameWordReducer(undefined, { type: "GAME_WORD" }).length).toBeGreaterThan(0);
     })
 })

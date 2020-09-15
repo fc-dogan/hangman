@@ -1,8 +1,10 @@
-const wordList = [
-  "about",
-  "account",
-  "acid",
-  "across"
+const WordList = [
+  'hello',
+  'hi',
 ]
 
-export default wordList;
+export function randomWord() {
+  return WordList[Math.floor(Math.random() * WordList.length)]
+}
+
+export default WordList;

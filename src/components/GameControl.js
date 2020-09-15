@@ -16,10 +16,13 @@ class GameControl extends React.Component {
      }
   }
 
-  // handleGuessedWord(){
-  //   return this.props.
-  // }
-
+//  handleRandomWord(){
+//   const { dispatch } = this.props;
+//   const action = {
+//     type: "GAME_WORD"
+//   }
+//   dispatch(action);
+//  }
 
   render() { 
     return (
