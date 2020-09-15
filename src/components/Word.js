@@ -1,9 +1,25 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from "prop-types";
 
-function Word(){
+function Word(props){
+  const { word } = props;
+
+  function handleSplitGameWord(props){
+    props.gameWord.split("").map(letter => {
+      return letter;
+    })
+  }
+
   return (
-    <p>Game word</p>
+    <React.Fragment>
+      {handleSplitGameWord}
+    </React.Fragment>
+    
   )
+}
+
+Word.propTypes ={
+  gameWord: PropTypes.string
 }
 
 export default Word;
