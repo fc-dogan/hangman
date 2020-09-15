@@ -1,3 +1,10 @@
 export default (state= "", action) => {
-  return state;
+  switch(action.type){
+    case 'SET_WORD':
+      const newWord = "javascript";
+      return newWord;
+    default:
+      return state;
+  }
+
 }
