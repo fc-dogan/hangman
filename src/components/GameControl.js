@@ -1,4 +1,7 @@
 import React from 'react';
+import HangmanImage from './HangmanImage';
+import Word from './Word';
+import LetterList from './LetterList';
 
 class GameControl extends React.Component {
   constructor(props) {
@@ -7,7 +10,12 @@ class GameControl extends React.Component {
   }
   render() { 
     return (
-      <h1>Game control</h1>
+      <React.Fragment>
+        <h1>Game control</h1>
+        <HangmanImage />
+        <Word />
+        <LetterList />
+      </React.Fragment>
      );
   }
 }
