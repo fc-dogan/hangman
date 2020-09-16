@@ -6,7 +6,10 @@ function LetterList(props){
 
   const allLetterList = ['a', 'b', 'c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
-
+  const handleClick =(letter) =>{
+    props.onLetterClick(letter);
+    props.countMistakes(letter);
+  }
 
 
   return(
@@ -14,16 +17,12 @@ function LetterList(props){
       {allLetterList.map(letter => {
         if (!props.guessedLetters.includes(letter)) {
           return (
-            <button
-              onClick={() => {
-                props.onLetterClick(letter);
-              }}
-            >
+            <button onClick={() => {handleClick(letter)}}>
               {letter}
             </button>
           );
         } else {
-          return " ";
+          return "";
         }
       })}
 
@@ -34,7 +33,8 @@ function LetterList(props){
 
 LetterList.propTypes = {
   onLetterClick: PropTypes.func,
-  guessedLetters: PropTypes.array
+  guessedLetters: PropTypes.array,
+  countMistakes: PropTypes.func
 }
 
 export default LetterList; 

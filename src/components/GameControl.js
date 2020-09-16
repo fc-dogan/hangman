@@ -33,7 +33,13 @@ class GameControl extends React.Component {
     dispatch(action);
   };
 
-
+  handleIncrementingWrongLetters = (letter) => {
+    const { dispatch } = this.props;
+    if (!this.props.gameWord.split('').includes(letter)) {
+      const action = { type: a.WRONG_LETTER };
+      dispatch(action);
+    }
+  };
 
 
 
@@ -67,7 +73,8 @@ handleLetterGuess = (letter) => {
        <h3>mistake: {this.props.wrongLetters}</h3>
         <LetterList  
         onLetterClick={this.handleLetterClick} 
-        guessedLetters={this.props.guessedLetters}/>
+        guessedLetters={this.props.guessedLetters}
+        countMistakes={this.handleIncrementingWrongLetters}/>
       </React.Fragment>
      );
   }
