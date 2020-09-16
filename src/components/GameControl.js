@@ -5,6 +5,7 @@ import LetterList from './LetterList';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import {randomWord} from './WordList';
+import * as a from './../actions';
 
 class GameControl extends React.Component {
   constructor(props) {
@@ -18,24 +19,16 @@ class GameControl extends React.Component {
      }
   }
 
-//  handleRandomWord(){
-//   const { dispatch } = this.props;
-//   const action = {
-//     type: "GAME_WORD"
-//   }
-//   dispatch(action);
-//  }
 
 handleGuessedWord() {
   return this.state.gameWord.split("").map(letter => 
     (this.state.guessedLetters.has(letter) ? letter : " _ "))
 }
 
-handleLetterGuess = (letter) => {
-  this.setState({
-    guessedLetters: this.state.guessedLetters.add(letter),
-    wrongLetters: this.state.wrongLetters + (this.state.gameWord.includes(letter) ? 0 : 1)
-  });
+handleLetterGuess = (letter) => { 
+ const { dispatch } = this.props;
+ const action = { type: a.ADD_LETTER, letter: letter };
+ dispatch(action);
 }
 
 resetGame = () => {
@@ -60,14 +53,20 @@ resetGame = () => {
 }
 
 GameControl.propTypes = {
-  gameWord: PropTypes.string
+  gameWord: PropTypes.string,
+  wrongLetters: PropTypes.number,
+  guessedLetters: PropTypes.array,
+  winGame: PropTypes.bool
 };
 
 const mapStateToProps = (state) => {
   return {
-    gameWord: state
+    gameWord: state.gameWord,
+    wrongLetters: state.wrongLetters,
+    guessedLetters: state.guessedLetters,
+    winGame: state.winGame
   }
-}
+};
 
 GameControl = connect(mapStateToProps)(GameControl);
  
