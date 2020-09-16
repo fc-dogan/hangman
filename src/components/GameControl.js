@@ -29,6 +29,13 @@ handleGuessedWord(){
   return this.state.gameWord.split("").map(letter => (this.state.guessedLetters.has(letter) ? letter : " _ "))
 }
 
+handleLetterGuess = (letter) => {
+  this.setState({
+    guessedLetters: this.state.guessedLetters.add(letter),
+    wrongLetters: this.state.wrongLetters + (this.state.gameWord.includes(letter) ? 0 : 1)
+  });
+}
+
   render() { 
     return (
       <React.Fragment>
