@@ -14,6 +14,7 @@ class GameControl extends React.Component {
       wrongLetters: 0,
       guessedLetters: new Set([]),
       image: 0,
+      winGame: null
      }
   }
 
