@@ -6,6 +6,7 @@ export const RESET_LETTERS = "RESET_LETTERS"; // empty letter guess array
 
 export const WRONG_LETTER = "WRONG_LETTER"; //increment by 1
 export const RESET_COUNT = "RESET_COUNT"; 
+export const WIN_GAME = "WIN_GAME"; 
 
 
 
