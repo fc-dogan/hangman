@@ -12,7 +12,7 @@ class GameControl extends React.Component {
     this.state = { 
       gameWord: randomWord(),
       wrongLetters: 0,
-      guessedLetters: [],
+      guessedLetters: new Set([]),
       image: 0,
      }
   }
@@ -25,8 +25,9 @@ class GameControl extends React.Component {
 //   dispatch(action);
 //  }
 
-handleGuessedWord(){
-  return this.state.gameWord.split("").map(letter => (this.state.guessedLetters.has(letter) ? letter : " _ "))
+handleGuessedWord() {
+  return this.state.gameWord.split("").map(letter => 
+    (this.state.guessedLetters.has(letter) ? letter : " _ "))
 }
 
 handleLetterGuess = (letter) => {
@@ -36,13 +37,22 @@ handleLetterGuess = (letter) => {
   });
 }
 
+resetGame = () => {
+  this.setState({
+    wrongLetters: 0,
+    guessedLetters: [],
+    gameWord: randomWord()
+  });
+}
+
   render() { 
+    const gameOver = this.state.wrongLetters > 6;
     return (
       <React.Fragment>
-        <h1>Game control</h1>
         <HangmanImage />
-        <Word gameWord={this.props.gameWord} />
-        <LetterList  />
+        <p> {!gameOver ? this.handleGuessedWord() : this.state.gameWord} </p>
+        {/* <Word gameWord={this.props.gameWord} /> */}
+        <LetterList  onLetterClick={this.handleLetterGuess}/>
       </React.Fragment>
      );
   }
