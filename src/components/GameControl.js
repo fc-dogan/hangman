@@ -21,7 +21,7 @@ class GameControl extends React.Component {
 
   
 
-  startGame() {
+  componentDidMount() {
     const { dispatch } = this.props;
     const action = { type: a.GAME_WORD };
     dispatch(action);
@@ -68,7 +68,6 @@ handleLetterGuess = (letter) => {
     return (
       <React.Fragment>
         <HangmanImage />
-        {this.startGame()}
         <Word word={this.props.gameWord} guessedLetters={this.props.guessedLetters}/>
        <h3>mistake: {this.props.wrongLetters}</h3>
         <LetterList  
