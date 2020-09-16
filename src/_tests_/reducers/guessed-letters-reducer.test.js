@@ -6,6 +6,14 @@ describe('guessedLetterReducer', () => {
     expect(guessedLettersReducer([], {type:null})).toEqual([])
   });
 
+  test("Should successfully add a letter to undefined state", () => {
+    const action = {
+      type: c.ADD_LETTER,
+      letter: "c"
+    };
+    expect(guessedLettersReducer(undefined, action)).toEqual([  "c" ]);
+  });
+
   test("Should successfully add a letter to the guessedLetter array", () => {
     const currentState = [ "a", "b" ];
     const action = {

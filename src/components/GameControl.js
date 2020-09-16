@@ -4,26 +4,44 @@ import Word from './Word';
 import LetterList from './LetterList';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
-import {randomWord} from './WordList';
-import * as a from './../actions';
+// import {randomWord} from './WordList';
+import * as a from './../actions/ActionTypes';
 
 class GameControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      gameWord: randomWord(),
-      wrongLetters: 0,
-      guessedLetters: new Set([]),
-      image: 0,
-      winGame: null
+      // gameWord: randomWord(),
+      // wrongLetters: 0,
+      // guessedLetters: new Set([]),
+      // image: 0,
+      // winGame: null
      }
   }
 
+  
 
-handleGuessedWord() {
-  return this.state.gameWord.split("").map(letter => 
-    (this.state.guessedLetters.has(letter) ? letter : " _ "))
-}
+  startGame() {
+    const { dispatch } = this.props;
+    const action = { type: a.GAME_WORD };
+    dispatch(action);
+  }
+
+  handleLetterClick =  (letter) => {
+    const { dispatch } = this.props;
+    const action = { type: a.ADD_LETTER, letter: letter };
+    dispatch(action);
+  };
+
+
+
+
+
+
+// handleGuessedWord() {
+//   return this.state.gameWord.split("").map(letter => 
+//     (this.state.guessedLetters.has(letter) ? letter : " _ "))
+// }
 
 handleLetterGuess = (letter) => { 
  const { dispatch } = this.props;
@@ -31,22 +49,25 @@ handleLetterGuess = (letter) => {
  dispatch(action);
 }
 
-resetGame = () => {
-  this.setState({
-    wrongLetters: 0,
-    guessedLetters: [],
-    gameWord: randomWord()
-  });
-}
+// resetGame = () => {
+//   this.setState({
+//     wrongLetters: 0,
+//     guessedLetters: [],
+//     gameWord: randomWord()
+//   });
+// }
 
   render() { 
     const gameOver = this.state.wrongLetters > 6;
     return (
       <React.Fragment>
         <HangmanImage />
-        <p> {!gameOver ? this.handleGuessedWord() : this.state.gameWord} </p>
-        {/* <Word gameWord={this.props.gameWord} /> */}
-        <LetterList  onLetterClick={this.handleLetterGuess}/>
+        {this.startGame()}
+        <Word word={this.props.gameWord} guessedLetters={this.props.guessedLetters}/>
+       <h3>mistake: {this.props.wrongLetters}</h3>
+        <LetterList  
+        onLetterClick={this.handleLetterClick} 
+        guessedLetters={this.props.guessedLetters}/>
       </React.Fragment>
      );
   }

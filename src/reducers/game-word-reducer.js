@@ -1,6 +1,11 @@
 import WordList from '../components/WordList';
 import * as c from '../actions/ActionTypes';
 
+// const WordList = [
+//   "hello",
+//   "hi",
+// ];
+
 export default (state= "", action) => {
   switch(action.type){
     case c.GAME_WORD:

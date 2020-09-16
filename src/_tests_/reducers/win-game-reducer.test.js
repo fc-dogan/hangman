@@ -13,6 +13,6 @@ describe('winGameReducer', () => {
   });
 
   it("Should successsfully reset game state null", () => {
-    expect(winGameReducer({}, {type: c.RESET_GAME})).toEqual(null);
+    expect(winGameReducer(false, {type: c.RESET_GAME})).toEqual(null);
   })
 })

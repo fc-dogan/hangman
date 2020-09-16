@@ -2,19 +2,27 @@ import React from 'react';
 import PropTypes from "prop-types";
 
 function Word(props){
+
  
   return (
     <React.Fragment>
-      <p>Game word</p>
-    
-      {/* <p>{props.handleRandomWord}</p> */}
+     <p>{props.word.split('').map(letter => {
+    if(props.guessedLetters.includes(letter)){
+      return letter
+    } else {
+      return " _ ";
+    }
+    })}
+  </p>
+     
     </React.Fragment>
     
   )
 }
 
-// Word.propTypes ={
-//   handleRandomWord: PropTypes.func
-// }
+Word.propTypes ={
+  word: PropTypes.string,
+  guessedLetters: PropTypes.array
+}
 
 export default Word;
