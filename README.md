@@ -11,7 +11,7 @@ _Hangman game_
 
 ### Component Diagram
 
-<img src="img/diagram.jpg" width="550px" />
+<img src="diagram.jpg" width="550px" />
 
 ## Specification user stories:
 * 

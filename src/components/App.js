@@ -21,13 +21,3 @@ function App() {
 export default App;
 
 
-// <Container>
-{/* <Row>
-<Col  md={{ span: 6, offset: 3 }} >
-  <Header/> 
-</Col>
-</Row>
-<Row>
-<GameControl />
-</Row> */}
-// </Container>

@@ -35,7 +35,7 @@ class GameControl extends React.Component {
 
   componentDidUpdate=()=>{
     const { dispatch } = this.props;
-    if(this.props.wrongLetters > 5 ){
+    if(this.props.wrongLetters > 6 ){
       const action2 = {type: a.LOSE_GAME}
       dispatch(action2);
     }  else if (this.checkForWin() ){
@@ -89,15 +89,14 @@ class GameControl extends React.Component {
       textAlign: "center",
       padding: "20px",
       alignItems: "center"
-      // justifyContent: 'space-between'
     };
 
     return (
       <React.Fragment>
         <div style={gameStyles}>
-          <HangmanImage />
+          <HangmanImage mistakes={this.props.wrongLetters} />
           <Word word={this.props.gameWord} guessedLetters={this.props.guessedLetters}/>
-          <h3>mistake: {this.props.wrongLetters}</h3>
+          <h3>mistake: {this.props.wrongLetters} of 7</h3>
           {currentlyVisible}
           <br/>
           <ResetButton onResetClick={this.handleResetTheGame}/>
