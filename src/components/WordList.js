@@ -2,7 +2,8 @@ const WordList = [
   "hello",
   "world",
   "run",
-  "walk"
+  "walk",
+  "carrot"
 ];
 
 // export function randomWord() {
