@@ -4,8 +4,8 @@ import Word from './Word';
 import LetterList from './LetterList';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
-// import {randomWord} from './WordList';
 import * as a from './../actions/ActionTypes';
+import ResetButton from './ResetButton';
 
 class GameControl extends React.Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class GameControl extends React.Component {
 
   handleLetterClick =  (letter) => {
     const { dispatch } = this.props;
-      if(this.props.wrongLetters > 5 ){
+      if(this.props.wrongLetters > 4 ){
           const action2 = {type: a.LOSE_GAME}
           dispatch(action2);
       } else if(this.checkForWin() ){
@@ -70,7 +70,15 @@ handleLetterGuess = (letter) => {
 }
 
 
-
+handleResetTheGame = () => {
+  const { dispatch } = this.props;
+  const action1 = { type:a.RESET_COUNT};
+  dispatch(action1);
+  const action2 = { type:a.RESET_GAME};
+  dispatch(action2);
+  const action3 = { type:a.RESET_LETTERS};
+  dispatch(action3);
+};
 // resetGame = () => {
 //   this.setState({
 //     wrongLetters: 0,
@@ -94,8 +102,10 @@ handleLetterGuess = (letter) => {
       <React.Fragment>
         <HangmanImage />
         <Word word={this.props.gameWord} guessedLetters={this.props.guessedLetters}/>
-       <h3>mistake: {this.props.wrongLetters}</h3>
-       {currentlyVisibleState}
+        <h3>mistake: {this.props.wrongLetters}</h3>
+        {currentlyVisibleState}
+        <br/>
+        <ResetButton onResetClick={this.handleResetTheGame}/>
       </React.Fragment>
      );
   }
