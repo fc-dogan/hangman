@@ -10,14 +10,7 @@ import ResetButton from './ResetButton';
 class GameControl extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      // gameWord: randomWord(),
-      // wrongLetters: 0,
-      // guessedLetters: new Set([]),
-      // image: 0,
-      // winGame: null
-      correctGuess: 0
-     }
+   
   }
 
   
@@ -69,9 +62,10 @@ handleLetterGuess = (letter) => {
  dispatch(action);
 }
 
-
 handleResetTheGame = () => {
   const { dispatch } = this.props;
+  const action4 = { type:a.GAME_WORD };
+  dispatch(action4);
   const action1 = { type:a.RESET_COUNT};
   dispatch(action1);
   const action2 = { type:a.RESET_GAME};
@@ -79,13 +73,7 @@ handleResetTheGame = () => {
   const action3 = { type:a.RESET_LETTERS};
   dispatch(action3);
 };
-// resetGame = () => {
-//   this.setState({
-//     wrongLetters: 0,
-//     guessedLetters: [],
-//     gameWord: randomWord()
-//   });
-// }
+
 
   render() { 
     const gameStatus = (this.props.winGame) ? "You Won!" : "You Lost"
