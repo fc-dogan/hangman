@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function LetterList(props){
@@ -11,22 +13,22 @@ function LetterList(props){
     props.countMistakes(letter);
   }
 
-
+const buttonStyle ={
+  margin: "2px",
+}
   return(
     <React.Fragment>
       {allLetterList.map(letter => {
         if (!props.guessedLetters.includes(letter)) {
           return (
-            <button onClick={() => {handleClick(letter)}}>
+            <Button style={buttonStyle} variant="outline-secondary" onClick={() => {handleClick(letter)}}>
               {letter}
-            </button>
+            </Button>
           );
         } else {
           return "";
         }
       })}
-
-     
     </React.Fragment>
   )
 }

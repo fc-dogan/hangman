@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import * as a from './../actions/ActionTypes';
 import ResetButton from './ResetButton';
+import { Container } from 'react-bootstrap';
 
 class GameControl extends React.Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class GameControl extends React.Component {
 
   componentDidUpdate=()=>{
     const { dispatch } = this.props;
-    if(this.props.wrongLetters > 4 ){
+    if(this.props.wrongLetters > 5 ){
       const action2 = {type: a.LOSE_GAME}
       dispatch(action2);
     }  else if (this.checkForWin() ){
@@ -82,14 +83,25 @@ class GameControl extends React.Component {
     } else {
       currentlyVisible = <h2>{gameStatus}</h2>;
     }
+
+    const gameStyles = {
+      marginTop: '2%',
+      textAlign: "center",
+      padding: "20px",
+      alignItems: "center"
+      // justifyContent: 'space-between'
+    };
+
     return (
       <React.Fragment>
-        <HangmanImage />
-        <Word word={this.props.gameWord} guessedLetters={this.props.guessedLetters}/>
-        <h3>mistake: {this.props.wrongLetters}</h3>
-        {currentlyVisible}
-        <br/>
-        <ResetButton onResetClick={this.handleResetTheGame}/>
+        <div style={gameStyles}>
+          <HangmanImage />
+          <Word word={this.props.gameWord} guessedLetters={this.props.guessedLetters}/>
+          <h3>mistake: {this.props.wrongLetters}</h3>
+          {currentlyVisible}
+          <br/>
+          <ResetButton onResetClick={this.handleResetTheGame}/>
+        </div>
       </React.Fragment>
      );
   }
