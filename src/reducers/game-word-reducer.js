@@ -1,15 +1,10 @@
 import WordList from '../components/WordList';
 import * as c from '../actions/ActionTypes';
 
-// const WordList = [
-//   "hello",
-//   "hi",
-// ];
-
 export default (state= "", action) => {
   switch(action.type){
     case c.GAME_WORD:
-      const newWord = WordList[Math.floor(Math.random() * WordList.length)];
+      const newWord = WordList[Math.floor(Math.random() * WordList.length)].toLowerCase();
       return newWord;
     default:
       return state;
