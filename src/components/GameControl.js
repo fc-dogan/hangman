@@ -10,42 +10,38 @@ import ResetButton from './ResetButton';
 class GameControl extends React.Component {
   constructor(props) {
     super(props);
-   
   }
-
-  
 
   componentDidMount() {
     const { dispatch } = this.props;
     const action = { type: a.GAME_WORD };
     dispatch(action);
-  }
+  };
 
   handleLetterClick =  (letter) => {
     const { dispatch } = this.props;
-      if(this.props.wrongLetters > 4 ){
-          const action2 = {type: a.LOSE_GAME}
-          dispatch(action2);
-      } else if(this.checkForWin() ){
-        const action = {type: a.WIN_GAME}
-            dispatch(action);
-      }else {
-        const action = { type: a.ADD_LETTER, letter: letter };
-        dispatch(action);
-      }
-
+    const action = { type: a.ADD_LETTER, letter: letter };
+    dispatch(action);    
   };
-
+  
   checkForWin = () => {
-    const mainLetters = this.props.gameWord.split('');
-    const tempArr = mainLetters.filter((letter) => this.props.guessedLetters.includes(letter));
-
-    if (tempArr.sort().join('') === mainLetters.sort().join('')) {
+    const gameWordArr = this.props.gameWord.split('');
+    const tempArr = gameWordArr.filter((letter) => this.props.guessedLetters.includes(letter));
+    if (tempArr.sort().join('') === gameWordArr.sort().join('')) {
       return true;
-    } else {
-      return false;
-    }
+    } 
   };
+
+  componentDidUpdate=()=>{
+    const { dispatch } = this.props;
+    if(this.props.wrongLetters > 4 ){
+      const action2 = {type: a.LOSE_GAME}
+      dispatch(action2);
+    }  else if (this.checkForWin() ){
+      const action = {type: a.WIN_GAME}
+      dispatch(action);
+    }
+  }
 
   handleIncrementingWrongLetters = (letter) => {
     const { dispatch } = this.props;
@@ -55,43 +51,43 @@ class GameControl extends React.Component {
     }
   };
 
-
-handleLetterGuess = (letter) => { 
- const { dispatch } = this.props;
- const action = { type: a.ADD_LETTER, letter: letter };
- dispatch(action);
-}
-
-handleResetTheGame = () => {
+  handleLetterGuess = (letter) => { 
   const { dispatch } = this.props;
-  const action4 = { type:a.GAME_WORD };
-  dispatch(action4);
-  const action1 = { type:a.RESET_COUNT};
-  dispatch(action1);
-  const action2 = { type:a.RESET_GAME};
-  dispatch(action2);
-  const action3 = { type:a.RESET_LETTERS};
-  dispatch(action3);
-};
+  const action = { type: a.ADD_LETTER, letter: letter };
+  dispatch(action);
+  }
 
+  handleResetTheGame = () => {
+    const { dispatch } = this.props;
+    const action4 = { type:a.GAME_WORD };
+    dispatch(action4);
+    const action1 = { type:a.RESET_COUNT};
+    dispatch(action1);
+    const action2 = { type:a.RESET_GAME};
+    dispatch(action2);
+    const action3 = { type:a.RESET_LETTERS};
+    dispatch(action3);
+  };
 
   render() { 
-    const gameStatus = (this.props.winGame) ? "You Won!" : "You Lost"
-    let currentlyVisibleState = null;
+    const gameStatus = (this.props.winGame) ? "You Won!" : "You Lost";
+    let currentlyVisible = null;
     if(this.props.winGame === null){
-      currentlyVisibleState =  <LetterList 
-      onLetterClick={this.handleLetterClick} 
-      guessedLetters={this.props.guessedLetters}
-      countMistakes={this.handleIncrementingWrongLetters}/>;
+      currentlyVisible =  
+        <LetterList 
+          onLetterClick={this.handleLetterClick} 
+          guessedLetters={this.props.guessedLetters}
+          countMistakes={this.handleIncrementingWrongLetters}
+          />;
     } else {
-      currentlyVisibleState = <h2>{gameStatus}</h2>;
+      currentlyVisible = <h2>{gameStatus}</h2>;
     }
     return (
       <React.Fragment>
         <HangmanImage />
         <Word word={this.props.gameWord} guessedLetters={this.props.guessedLetters}/>
         <h3>mistake: {this.props.wrongLetters}</h3>
-        {currentlyVisibleState}
+        {currentlyVisible}
         <br/>
         <ResetButton onResetClick={this.handleResetTheGame}/>
       </React.Fragment>

@@ -34,7 +34,7 @@ function LetterList(props){
 LetterList.propTypes = {
   onLetterClick: PropTypes.func,
   guessedLetters: PropTypes.array,
-  countMistakes: PropTypes.func
+  countMistakes: PropTypes.func,
 }
 
 export default LetterList; 
