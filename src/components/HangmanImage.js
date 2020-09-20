@@ -15,7 +15,7 @@ const images = [hman0,hman1,hman2,hman3,hman4,hman5,hman6,hman7];
 function HangmanImage(props){
 
   const imageStyles = {
-    height: '400px',
+    height: '350px',
     width: 'auto'
   };
   return(

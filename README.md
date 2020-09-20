@@ -4,17 +4,17 @@
 
 ## Description
 
-_Hangman game_
+_React Redux hangman game_
 
-<!-- _View the live site at:_  -->
+_View the live site at:_ https://fc-dogan.github.io/hangman/
 
 
 ### Component Diagram
 
 <img src="diagram.jpg" width="550px" />
 
-## Specification user stories:
-* 
+<!-- ## Specification user stories:
+*  -->
 
 ## Setup/Installation Requirements
 
@@ -39,8 +39,8 @@ _Please visit the [Node.js website](https://nodejs.org/en/download/) for install
 _Clone this repository via Terminal using the following commands:_
 ```
 cd desktop
-<!-- git clone https:// -->
-<!-- cd merch-site -->
+git clone https://github.com/fc-dogan/hangman
+cd hangman
 ```
 
 _Next, install npm at the project's root directory, and start the server:_
@@ -57,12 +57,12 @@ code .
 ```
 
 
-
 ## Technologies Used
 
 * _React_
-* _JavaScript_
-* _WebPack_
+* _Redux_
+* _Node.js_
+* _Bootstrap_
 * _CSS_
 * _Git_
 

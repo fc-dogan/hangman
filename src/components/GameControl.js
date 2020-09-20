@@ -81,7 +81,11 @@ class GameControl extends React.Component {
           countMistakes={this.handleIncrementingWrongLetters}
           />;
     } else {
-      currentlyVisible = <h2>{gameStatus}</h2>;
+      currentlyVisible =
+       <div>
+        <h2>{gameStatus}</h2>
+        <p >The word was: {this.props.gameWord}</p>
+      </div> 
     }
 
     const gameStyles = {
